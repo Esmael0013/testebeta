@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>EsmaelTech - Jogo de Cliques</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        html {
+            touch-action: manipulation; /* Previne zoom e gestos indesejados */
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, #0d1b2a, #1b263b);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #03dac6;
+            text-shadow: 0 0 15px rgba(3, 218, 198, 0.8);
+            margin-bottom: 20px;
+        }
+
+        #clickEmoji {
+            font-size: 8rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+            animation: bounce 0.5s infinite alternate;
+        }
+
+        #clickEmoji:active {
+            transform: scale(0.9);
+        }
+
+        .counter {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        .reward, .achievements {
+            margin-top: 30px;
+            font-size: 1.2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .reward button, .back-button {
+            background: #03dac6;
+            color: #1b263b;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .reward button:hover, .back-button:hover {
+            background: #02b8a3;
+            transform: scale(1.1);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* Estilos para dispositivos móveis */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            #clickEmoji {
+                font-size: 5rem;
+            }
+            .counter {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Jogo de Cliques - EsmaelTech 🎉</h1>
+    <div id="clickEmoji" onclick="handleClick()">&#128142;</div> <!-- 💎 -->
+
+    <div class="counter">Cliques: <span id="clickCount">0</span></div>
+    <div class="reward hidden" id="rewardMessage">Recompensa desbloqueada!</div>
+    <div class="achievements" id="achievements">
+        <h2>Conquistas</h2>
+        <ul>
+            <li id="achievement1" class="hidden">Parabéns! Você alcançou 10 cliques! 🎉</li>
+            <li id="achievement2" class="hidden">Incrível! 20 cliques! 🎉</li>
+            <li id="achievement3" class="hidden">Você é um mestre dos cliques! 50 cliques! 🎉</li>
+            <li id="achievement4" class="hidden">Será que tem mais alguma coisa? 150 cliques! 🤔</li>
+            <li id="achievement5" class="hidden">
+                Uau! 220 cliques! 🎉 <button onclick="redirect()">Descubra Aqui!</button>
+            </li>
+            <li id="achievement6" class="hidden">Incrível! Você chegou a 500 cliques! 🥳</li>
+            <li id="achievement7" class="hidden">Impressionante! 1000 cliques! O que vem a seguir? 🚀</li>
+        </ul>
+    </div>
+
+    <div>
+        <button class="back-button" onclick="window.location.href='./index.html'">Voltar para a Página Principal</button>
+    </div>
+
+    <script>
+        let clickCount = 0;
+
+        function handleClick() {
+            clickCount++;
+            document.getElementById('clickCount').textContent = clickCount;
+            checkReward(clickCount);
+
+            const clickEmoji = document.getElementById('clickEmoji');
+            clickEmoji.classList.remove('bounceClick');
+            void clickEmoji.offsetWidth;
+            clickEmoji.classList.add('bounceClick');
+        }
+
+        function checkReward(count) {
+            const rewardMessage = document.getElementById('rewardMessage');
+            if (count === 10) {
+                rewardMessage.textContent = "Parabéns! Você alcançou 10 cliques! 🎉";
+                rewardMessage.classList.remove('hidden');
+                document.getElementById('achievement1').classList.remove('hidden');
+            } else if (count === 20) {
+                rewardMessage.textContent = "Incrível! 20 cliques! 🎉";
+                rewardMessage.classList.remove('hidden');
+                document.getElementById('achievement2').classList.remove('hidden');
+            } else if (count === 50) {
+                rewardMessage.textContent = "Você é um mestre dos cliques! 50 cliques! 🎉";
+                rewardMessage.classList.remove('hidden');
+                document.getElementById('achievement3').classList.remove('hidden');
+            } else if (count === 150) {
+                rewardMessage.textContent = "Será que tem mais alguma coisa? 150 cliques! 🤔";
+                rewardMessage.classList.remove('hidden');
+                document.getElementById('achievement4').classList.remove('hidden');
+            } else if (count === 220) {
+                rewardMessage.textContent = "Uau! 220 cliques! 🎉";
+                rewardMessage.classList.remove('hidden');
+                document.getElementById('achievement5').classList.remove('hidden');
+            } else if (count === 500) {
+                rewardMessage.textContent = "Incrível! Você chegou a 500 cliques! 🥳";
+                rewardMessage.classList.remove('hidden');
+                document.getElementById('achievement6').classList.remove('hidden');
+            } else if (count === 1000) {
+                rewardMessage.textContent = "Impressionante! 1000 cliques! O que vem a seguir? 🚀";
+                rewardMessage.classList.remove('hidden');
+                document.getElementById('achievement7').classList.remove('hidden');
+            } else {
+                rewardMessage.classList.add('hidden');
+            }
+        }
+
+        function redirect() {
+            window.location.href = './pagina.html';
+        }
+
+        const styleSheet = document.createElement("style");
+        styleSheet.type = "text/css";
+        styleSheet.innerText = `
+            @keyframes bounceClick {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.2); }
+                100% { transform: scale(1); }
+            }
+            .bounceClick {
+                animation: bounceClick 0.1s;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>

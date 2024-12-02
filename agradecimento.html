@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agradecimento - EsmaelTech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0d1b2a, #1b263b);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        .content-box {
+            max-width: 800px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeInUp 1.5s 0.5s forwards;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            background-color: #fff;
+            color: #0044cc;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .tab-button:hover {
+            background-color: #0044cc;
+            color: white;
+        }
+
+        .tabs-content {
+            display: none;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tabs-content.active {
+            display: block;
+        }
+
+        .buttons-container {
+            margin-top: 30px;
+        }
+
+        .back-button {
+            background-color: #fff;
+            color: #0044cc;
+            padding: 15px 30px;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #0044cc;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        footer {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            position: absolute;
+            bottom: 20px;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Música de Fundo -->
+    <audio autoplay loop>
+        <source src="C418  - Sweden - Minecraft Volume Alpha.mp3" type="audio/mp3">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <!-- Título de Agradecimento -->
+    <h1>Obrigado Seguidores!</h1>
+
+    <!-- Caixa de Agradecimento -->
+    <div class="content-box">
+        <p>Com cada curtida, cada comentário e cada interação, minha motivação cresce. Isso é apenas o começo, e juntos vamos conquistar muito mais. Obrigado por fazer parte dessa jornada!</p>
+    </div>
+
+    <!-- Abas Interativas -->
+    <div class="tabs">
+        <button class="tab-button" onclick="showTab(0)">❤️</button>
+        <button class="tab-button" onclick="showTab(1)">⭐</button>
+        <button class="tab-button" onclick="showTab(2)">✨</button>
+        <button class="tab-button" onclick="showTab(3)">🚀</button>
+    </div>
+
+    <!-- Conteúdo das Abas -->
+    <div class="tabs-content" id="tab-0">
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia."
+    </div>
+    <div class="tabs-content" id="tab-1">
+        "Cada passo é uma vitória, e cada vitória é nossa!"
+    </div>
+    <div class="tabs-content" id="tab-2">
+        "O melhor ainda está por vir. Vamos seguir juntos!"
+    </div>
+    <div class="tabs-content" id="tab-3">
+        "Obrigado por acreditar! Juntos somos mais fortes!"
+    </div>
+
+    <!-- Botão de Navegação -->
+    <div class="buttons-container">
+        <button class="back-button" onclick="window.location.href='index.html';">Voltar à Página Principal</button>
+    </div>
+    <div class="buttons-container">
+        <button class="back-button" onclick="window.location.href='games.html';">JOGO!</button>
+    </div>
+    <!-- Rodapé -->
+    <footer>EsmaelTech - AGRADECIMENTOS!</footer>
+
+    <script>
+        // Função para alternar as abas
+        function showTab(index) {
+            const tabs = document.querySelectorAll('.tabs-content');
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+        }
+
+        // Inicializar com a primeira aba visível
+        showTab(0);
+    </script>
+
+</body>
+</html>
